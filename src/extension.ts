@@ -1,24 +1,32 @@
 import * as vscode from 'vscode';
+import * as path from 'path';
 
 export function activate(context: vscode.ExtensionContext) {
     console.log('Congratulations, your extension "vsrx" is now active!');
 
     const disposable = vscode.commands.registerCommand('vsrx.helloWorld', () => {
         const panel = vscode.window.createWebviewPanel(
-            'helloWorldWebview', // Identifies the type of the webview. Used internally
-            'Hello World', // Title of the panel displayed to the user
-            vscode.ViewColumn.One, // Editor column to show the new webview panel in
-            {} // Webview options. More on these later.
+            'helloWorldWebview',
+            'Hello World',
+            vscode.ViewColumn.One,
+            {
+                enableScripts: true,
+            }
         );
 
-        // And set its HTML content
-        panel.webview.html = getWebviewContent();
+        panel.webview.html = getWebviewContent(context, panel.webview);
     });
 
     context.subscriptions.push(disposable);
 }
 
-function getWebviewContent() {
+function getWebviewContent(context: vscode.ExtensionContext, webview: vscode.Webview) {
+    const scriptPathOnDisk = vscode.Uri.file(
+        path.join(context.extensionPath, 'out', 'pages', 'home.bundle.js')
+    );
+
+    const scriptUri = webview.asWebviewUri(scriptPathOnDisk);
+
     return `<!DOCTYPE html>
     <html lang="en">
     <head>
@@ -27,7 +35,8 @@ function getWebviewContent() {
         <title>Hello World</title>
     </head>
     <body>
-        <h1>Hello World from vsrx!</h1>
+        <div id="root"></div>
+        <script src="${scriptUri}"></script>
     </body>
     </html>`;
 }
