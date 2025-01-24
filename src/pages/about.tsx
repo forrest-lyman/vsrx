@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { provideWebview } from '../lib/webview/provider';
 
 const About: React.FC = () => {
     return (
@@ -9,5 +9,4 @@ const About: React.FC = () => {
     );
 };
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
-root.render(<About />);
+export default provideWebview(About);
