@@ -21,6 +21,7 @@
   },
   "scripts": {
     "build:webview": "webpack --config webpack.config.js",
+    "build:all": "npm run compile && npm run build:webview",
     "vscode:prepublish": "npm run compile && npm run build:webview",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
