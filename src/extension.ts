@@ -22,7 +22,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 function getWebviewContent(context: vscode.ExtensionContext, webview: vscode.Webview) {
     const scriptPathOnDisk = vscode.Uri.file(
-        path.join(context.extensionPath, 'out', 'pages', 'home.bundle.js')
+        path.join(context.extensionPath, 'out', 'pages', 'about.bundle.js')
     );
 
     const scriptUri = webview.asWebviewUri(scriptPathOnDisk);
