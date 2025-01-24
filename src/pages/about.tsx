@@ -1,10 +1,10 @@
 import React from 'react';
-import { provideWebview } from '../lib/webview/provider';
+import { provideWebview } from '../lib/cient/provider';
 
-const About: React.FC = () => {
+const About: React.FC = ({name}: any) => {
     return (
         <div>
-            <h1>About</h1>
+            <h1>Hello {name}</h1>
         </div>
     );
 };

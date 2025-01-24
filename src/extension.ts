@@ -2,8 +2,6 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 
 export function activate(context: vscode.ExtensionContext) {
-    console.log('Congratulations, your extension "vsrx" is now active!');
-
     const disposable = vscode.commands.registerCommand('vsrx.helloWorld', () => {
         const panel = vscode.window.createWebviewPanel(
             'helloWorldWebview',
@@ -26,6 +24,7 @@ function getWebviewContent(context: vscode.ExtensionContext, webview: vscode.Web
     );
 
     const scriptUri = webview.asWebviewUri(scriptPathOnDisk);
+    const props = { name: 'forrest' };
 
     return `<!DOCTYPE html>
     <html lang="en">
@@ -35,7 +34,7 @@ function getWebviewContent(context: vscode.ExtensionContext, webview: vscode.Web
         <title>Hello World</title>
     </head>
     <body>
-        <div id="root"></div>
+        <div id="root" data-props='${JSON.stringify(props)}'></div>
         <script src="${scriptUri}"></script>
     </body>
     </html>`;
