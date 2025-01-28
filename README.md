@@ -1,71 +1,173 @@
-# vsrx README
+# VSRX
 
-This is the README for your extension "vsrx". After writing up a brief description, we recommend including the following sections.
+Reactive Full stack framework for developing VSCode extensions.
 
-## Features
+## Packages
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+### @vsrx/core
 
-For example if there is an image subfolder under your extension project workspace:
+The @vsrx/core package includes all of the code that runs within the context of the extension.
 
-\!\[feature X\]\(images/feature-x.png\)
+### @vsrx/react
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+The @vsrx/react package includes the React ui toolkit, components and hooks for building React applications to run in VSCode and integrate with
+the @vsrx/core package.
 
-## Requirements
+## Quickstart
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+### 1. Install VSRX
 
-## Extension Settings
+```shell
+npm i @vsrx/core @vsrx/react
+```
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+### 2. Create a React component
 
-For example:
+Create a new React component at `src/greeting.tsx`.
 
-This extension contributes the following settings:
+```tsx
+import React from 'react';
+import {useStream, provideWebview} from '@vsrx/react';
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+const Greeting: React.FC = () => {
+    return (
+        <div>
+            <h1>Hello World!</h1>
+        </div>
+    );
+};
 
-## Known Issues
+export default provideWebview(Greeting);
+```
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+### 3. Add a command to VSCode to open your webview
 
-## Release Notes
+First you need to add the command to your extension `package.json` file:
 
-Users appreciate release notes as you update your extension.
+```json
+"contributes": {
+    "commands": [
+      {
+        "command": "myExtension.greeting",
+        "title": "Show Greeting"
+      }
+    ]
+  },
+```
 
-### 1.0.0
+Then add the handler for the command in your `src/extension.js` file:
 
-Initial release of ...
+```typescript
+import { WebViewContext, renderWebView } from '@vsrx/core';
+import * as vscode from 'vscode';
 
-### 1.0.1
+export function activate(context: vscode.ExtensionContext) {
+    WebViewContext.setContext(context);
+    const disposable = vscode.commands.registerCommand('myExtension.greeting', () => {
+        const panel = renderWebView('greeting');
+    });
 
-Fixed issue #.
+    context.subscriptions.push(disposable);
+}
 
-### 1.1.0
+export function deactivate() {}
+```
 
-Added features X, Y, and Z.
+## Passing props to your components
 
----
+You can pass static props to your React components from your extension. These static props are inserted when we build your webview, so they are immutable and do not support passing functions.
 
-## Following extension guidelines
+First you need to update the greeting component to accept props:
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+```tsx
+import React from 'react';
+import {useStream, provideWebview} from '@vsrx/react';
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+export interface GreetingProps {
+    name: string;
+}
 
-## Working with Markdown
+const Greeting: React.FC = ({name}: GreetingProps) => {
+    return (
+        <div>
+            <h1>Hello {name}!</h1>
+        </div>
+    );
+};
 
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
+export default provideWebview(Greeting);
+```
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
+Next you need to update your `src/extension.ts` to pass the name:
 
-## For more information
+```typescript
+import { WebViewContext, renderWebView } from '@vsrx/core';
+import * as vscode from 'vscode';
 
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+export function activate(context: vscode.ExtensionContext) {
+    WebViewContext.setContext(context);
+    const disposable = vscode.commands.registerCommand('myExtension.greeting', () => {
+        const panel = renderWebView('greeting', {name: 'Forrest'});
+    });
 
-**Enjoy!**
+    context.subscriptions.push(disposable);
+}
+
+export function deactivate() {}
+```
+
+## Realtime communication
+
+If you need to support realtime communication you can use our stream which enables you to send any kind of data to and from your webviews.
+
+```tsx
+import React from 'react';
+import {useStream, provideWebview} from '@vsrx/react';
+
+const Greeting: React.FC = () => {
+    const [name, sendName] = useStream('name');
+    const [inputName, setInputName] = React.useState('');
+
+    const handleSetName = () => {
+        sendName(inputName);
+    };
+
+    return (
+        <div>
+            <h1>Hello {name}</h1>
+            <input 
+                type="text" 
+                value={inputName} 
+                onChange={(e) => setInputName(e.target.value)} 
+                placeholder="Enter your name" 
+            />
+            <button onClick={handleSetName}>Set Name</button>
+        </div>
+    );
+};
+
+export default provideWebview(About);
+```
+
+Next you need to update your `src/extension.ts` to send and receive the name:
+
+```typescript
+import { WebViewContext, renderWebView } from '@vsrx/core';
+import * as vscode from 'vscode';
+
+export function activate(context: vscode.ExtensionContext) {
+    WebViewContext.setContext(context);
+    const disposable = vscode.commands.registerCommand('myExtension.greeting', () => {
+        const panel = renderWebView('greeting');
+        panel.send('name', 'Guest');
+        panel.addEventListener('name', ({name}) => {
+            // todo save the user's name
+            panel.send('name', name);
+        });
+    });
+
+    context.subscriptions.push(disposable);
+}
+
+export function deactivate() {}
+```
