@@ -40,6 +40,12 @@ const Greeting: React.FC = () => {
 export default provideWebview(Greeting);
 ```
 
+Now build the Greeting component:
+
+```shell
+npx vsrx-build-react
+```
+
 ### 3. Add a command to VSCode to open your webview
 
 First you need to add the command to your extension `package.json` file:
@@ -96,6 +102,12 @@ const Greeting: React.FC = ({name}: GreetingProps) => {
 };
 
 export default provideWebview(Greeting);
+``
+
+Now build the updated Greeting component:
+
+```shell
+npx vsrx-build-react
 ```
 
 Next you need to update your `src/extension.ts` to pass the name:
@@ -147,6 +159,13 @@ const Greeting: React.FC = () => {
 };
 
 export default provideWebview(About);
+```
+
+
+Now build the updated Greeting component:
+
+```shell
+npx vsrx-build-react
 ```
 
 Next you need to update your `src/extension.ts` to send and receive the name:
