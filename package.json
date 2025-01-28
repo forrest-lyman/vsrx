@@ -20,8 +20,8 @@
     ]
   },
   "scripts": {
-    "build:webview": "webpack --config webpack.config.js",
-    "build:all": "npm run compile && npm run build:webview",
+    "build:ui": "npx vsrx-build-react",
+    "build:all": "npm run compile && npm run build:ui",
     "vscode:prepublish": "npm run compile && npm run build:webview",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "@vsrx/core": "^0.1.0",
-    "@vsrx/react": "^0.1.0",
+    "@vsrx/react": "^0.2.3",
     "react": "^19.0.0"
   }
 }

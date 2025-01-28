@@ -3,15 +3,15 @@ const glob = require('glob');
 
 module.exports = {
     mode: 'development',
-    entry: glob.sync('./src/pages/**/*.tsx').reduce((entries, file) => {
+    entry: glob.sync('./src/**/*.tsx').reduce((entries, file) => {
         const entry = path.basename(file, path.extname(file));
         entries[entry] = path.resolve(__dirname, file);
         return entries;
     }, {}),
     output: {
-        path: path.resolve(__dirname, 'out/pages'),
+        path: path.resolve(__dirname, 'out'),
         filename: '[name].bundle.js',
-        library: 'MyLibrary',
+        library: 'vsrx',
         libraryTarget: 'umd',
     },
     resolve: {
