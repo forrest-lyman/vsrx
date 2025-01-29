@@ -102,7 +102,7 @@ const Greeting: React.FC = ({name}: GreetingProps) => {
 };
 
 export default provideWebview(Greeting);
-``
+```
 
 Now build the updated Greeting component:
 
