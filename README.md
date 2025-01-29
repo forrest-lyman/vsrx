@@ -64,7 +64,7 @@ First you need to add the command to your extension `package.json` file:
 Then add the handler for the command in your `src/extension.js` file:
 
 ```typescript
-import { WebViewContext, renderWebView } from '@vsrx/core';
+import { WebViewContext, renderWebView } from '@vsrx/core/webview';
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
