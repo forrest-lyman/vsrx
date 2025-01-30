@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-
+// todo support light and dark themes
+// todo support disabled state
+// todo fine tune styles
 
 const getSizeStyles = (size?: 'small' | 'medium' | 'large') => {
     switch (size) {
