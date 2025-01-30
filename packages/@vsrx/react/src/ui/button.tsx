@@ -67,7 +67,21 @@ const iconStyles = `
     }
 `;
 
-const getButtonStyles = (variant?: 'primary' | 'secondary' | 'link' | 'icon') => {
+const outlineStyles = `
+    background: none;
+    border: 1px solid #007acc;
+    color: #007acc;
+
+    &:hover {
+        background-color: #f0f8ff;
+    }
+
+    &:active {
+        background-color: #e0f0ff;
+    }
+`;
+
+const getButtonStyles = (variant?: 'primary' | 'secondary' | 'link' | 'icon' | 'outline') => {
     switch (variant) {
         case 'secondary':
             return secondaryStyles;
@@ -75,12 +89,14 @@ const getButtonStyles = (variant?: 'primary' | 'secondary' | 'link' | 'icon') =>
             return linkStyles;
         case 'icon':
             return iconStyles;
+        case 'outline':
+            return outlineStyles;
         default:
             return '';
     }
 };
 
-const StyledButton = styled.button<{ variant?: 'primary' | 'secondary' | 'link' | 'icon', size?: 'small' | 'medium' | 'large' }>`
+const StyledButton = styled.button<{ variant?: 'primary' | 'secondary' | 'link' | 'icon' | 'outline', size?: 'small' | 'medium' | 'large' }>`
     background-color: #007acc;
     color: white;
     border: none;
@@ -117,7 +133,7 @@ const StyledButton = styled.button<{ variant?: 'primary' | 'secondary' | 'link' 
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     children: React.ReactNode;
-    variant?: 'primary' | 'secondary' | 'link' | 'icon';
+    variant?: 'primary' | 'secondary' | 'link' | 'icon' | 'outline';
     size?: 'small' | 'medium' | 'large';
 }
 

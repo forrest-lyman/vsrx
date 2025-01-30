@@ -38,6 +38,13 @@ export const Icon: Story = {
     },
 };
 
+export const Outline: Story = {
+    args: {
+        children: 'Click me',
+        variant: 'outline',
+    },
+};
+
 export const Small: Story = {
     args: {
         children: 'Click me',
