@@ -1,6 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
 
+
+
+const getSizeStyles = (size?: 'small' | 'medium' | 'large') => {
+    switch (size) {
+        case 'small':
+            return `
+                padding: 4px 8px;
+                font-size: 12px;
+            `;
+        case 'large':
+            return `
+                padding: 12px 24px;
+                font-size: 16px;
+            `;
+        case 'medium':
+        default:
+            return `
+                padding: 8px 16px;
+                font-size: 14px;
+            `;
+    }
+};
+
 const secondaryStyles = `
     background-color: #e0e0e0;
     color: #333;
@@ -57,7 +80,7 @@ const getButtonStyles = (variant?: 'primary' | 'secondary' | 'link' | 'icon') =>
     }
 };
 
-const StyledButton = styled.button<{ variant?: 'primary' | 'secondary' | 'link' | 'icon' }>`
+const StyledButton = styled.button<{ variant?: 'primary' | 'secondary' | 'link' | 'icon', size?: 'small' | 'medium' | 'large' }>`
     background-color: #007acc;
     color: white;
     border: none;
@@ -89,13 +112,18 @@ const StyledButton = styled.button<{ variant?: 'primary' | 'secondary' | 'link' 
     }
 
     ${({ variant }) => getButtonStyles(variant)}
+    ${({ size }) => getSizeStyles(size)}
 `;
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     children: React.ReactNode;
     variant?: 'primary' | 'secondary' | 'link' | 'icon';
+    size?: 'small' | 'medium' | 'large';
 }
 
-export const Button: React.FC<ButtonProps> = ({ children, variant, ...props }) => {
-    return <StyledButton variant={variant} {...props}>{children}</StyledButton>;
+export const Button: React.FC<ButtonProps> = ({ children, variant, size, ...props }) => {
+    return <StyledButton size={size} variant={variant} {...props}>{children}</StyledButton>;
 };
+
+
+

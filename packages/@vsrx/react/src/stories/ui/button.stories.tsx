@@ -37,3 +37,27 @@ export const Icon: Story = {
         variant: 'icon',
     },
 };
+
+export const Small: Story = {
+    args: {
+        children: 'Click me',
+        variant: 'primary',
+        size: 'small',
+    },
+};
+
+export const Medium: Story = {
+    args: {
+        children: 'Click me',
+        variant: 'primary',
+        size: 'medium',
+    },
+};
+
+export const Large: Story = {
+    args: {
+        children: 'Click me',
+        variant: 'primary',
+        size: 'large',
+    },
+};
