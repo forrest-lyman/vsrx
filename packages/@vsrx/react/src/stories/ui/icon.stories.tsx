@@ -1,10 +1,12 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { Icon,  IconProps } from '../../ui/icon';
+import { withSidebar } from '../decorators/vscode';
 
 const meta: Meta<IconProps> = {
   title: 'UI/Icon',
   component: Icon,
+  decorators: [withSidebar],
 } satisfies Meta<typeof Icon>;
 
 export default meta;

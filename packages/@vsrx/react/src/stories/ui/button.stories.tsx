@@ -1,10 +1,14 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { Button, ButtonProps } from '../../ui/button';
+import { withSidebar } from '../decorators/vscode';
+
+
 
 const meta  = {
     title: 'UI/Button',
     component: Button,
+    decorators: [withSidebar],
 } satisfies Meta<typeof Button>;
 
 export default meta;
