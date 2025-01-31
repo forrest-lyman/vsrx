@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import { Grid, GridProps } from '../../ui/grid';
-import { withSidebar } from '../decorators/vscode';
+import { Grid, GridProps } from './Grid';
+import { withSidebar } from '../../stories/decorators/vscode';
 import styled from 'styled-components';
 
 const GridLabel = styled.div`

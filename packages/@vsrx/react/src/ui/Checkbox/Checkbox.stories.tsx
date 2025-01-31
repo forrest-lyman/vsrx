@@ -1,6 +1,6 @@
 import React from 'react';
-import { Checkbox } from '../../ui/Checkbox';
-import { withSidebar } from '../decorators/vscode';
+import { Checkbox } from './Checkbox';
+import { withSidebar } from '../../stories/decorators/vscode';
 import { Meta, StoryObj } from '@storybook/react/*';
 
 const meta = {
