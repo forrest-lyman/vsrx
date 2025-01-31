@@ -3,8 +3,6 @@ import { Meta, StoryObj } from '@storybook/react';
 import { Icon,  IconProps } from '../../ui/icon';
 import { withSidebar } from '../decorators/vscode';
 
-const TestGrid = () => {}
-
 const meta: Meta<IconProps> = {
   title: 'UI/Icon',
   component: Icon,
