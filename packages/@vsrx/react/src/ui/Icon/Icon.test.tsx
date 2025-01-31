@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { Icon, IconProps } from './icon';
+import { Icon, IconProps } from './Icon';
 
 describe('Icon component', () => {
     const renderIcon = (props: IconProps) => render(<Icon {...props} />);

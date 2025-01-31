@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "webpack serve --mode development",
-    "test": "jest",
+    "test": "jest --coverage",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -57,5 +57,13 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "exports": {
+    "./ui/button": "./dist/ui/Button/Button.js",
+    "./ui/checkbox": "./dist/ui/Checkbox/Checkbox.js",
+    "./ui/grid": "./dist/ui/Grid/Grid.js",
+    "./ui/icon": "./dist/ui/Icon/Icon.js",
+    "./ui/radio": "./dist/ui/Radio/Radio.js",
+    "./ui/typography": "./dist/ui/Typography.js"
   }
 }

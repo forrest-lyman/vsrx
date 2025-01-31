@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import { Icon,  IconProps } from '../../ui/icon';
-import { withSidebar } from '../decorators/vscode';
+import { Icon,  IconProps } from './Icon';
+import { withSidebar } from '../../stories/decorators/vscode';
 
 const meta: Meta<IconProps> = {
   title: 'UI/Icon',

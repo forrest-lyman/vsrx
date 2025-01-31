@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import { Button, ButtonProps } from '../../ui/button';
-import { withSidebar } from '../decorators/vscode';
+import { Button, ButtonProps } from './Button';
+import { withSidebar } from '../../stories/decorators/vscode';
 
 
 
