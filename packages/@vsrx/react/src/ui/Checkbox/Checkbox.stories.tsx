@@ -1,10 +1,10 @@
 import React from 'react';
 import { Checkbox } from './Checkbox';
 import { withSidebar } from '../../stories/decorators/vscode';
-import { Meta, StoryObj } from '@storybook/react/*';
+import { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'UI/Checkbox',
+  title: 'Form/Checkbox',
   component: Checkbox,
   decorators: [withSidebar],
 } satisfies Meta<typeof Checkbox>;

@@ -32,7 +32,7 @@ const data = [
 ]
 
 const meta  = {
-    title: 'UI/DataTable',
+    title: 'Data/DataTable',
     component: Table,
     decorators: [withSidebar],
 } satisfies Meta<typeof Table>;

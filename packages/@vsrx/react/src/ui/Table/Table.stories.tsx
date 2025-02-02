@@ -28,7 +28,7 @@ const TestTable = () => (
 );
 
 const meta  = {
-    title: 'UI/Table',
+    title: 'Data/Table',
     component: TestTable,
     decorators: [withSidebar],
 } satisfies Meta<typeof Table>;

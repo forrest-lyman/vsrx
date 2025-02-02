@@ -202,14 +202,14 @@ type CodiconNames =
     | 'zap';
 
 export interface IconProps {
-    iconName: CodiconNames;
+    name: CodiconNames;
     size?: number;
 }
 
-export const Icon: React.FC<IconProps> = ({ iconName, size = 16 }) => {
+export const Icon: React.FC<IconProps> = ({ name, size = 16 }) => {
   return (
     <span
-      className={`codicon codicon-${iconName}`}
+      className={`codicon codicon-${name}`}
       style={{ fontSize: size, display: 'inline-block' }}
       aria-hidden="true"
     />

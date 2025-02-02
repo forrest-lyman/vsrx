@@ -4,7 +4,7 @@ import { Icon,  IconProps } from './Icon';
 import { withSidebar } from '../../stories/decorators/vscode';
 
 const meta: Meta<IconProps> = {
-  title: 'UI/Icon',
+  title: 'Core/Icon',
   component: Icon,
   decorators: [withSidebar],
 } satisfies Meta<typeof Icon>;
@@ -14,35 +14,35 @@ type Story = StoryObj<typeof meta>;
 
 export const AddIcon: Story = {
   args: {
-    iconName: 'add',
+    name: 'add',
     size: 24,
   },
 };
 
 export const EditIcon: Story = {
   args: {
-    iconName: 'edit',
+    name: 'edit',
     size: 24,
   },
 };
 
 export const DeleteIcon: Story = {
   args: {
-    iconName: 'trash',
+    name: 'trash',
     size: 24,
   },
 };
 
 export const LargeIcon: Story = {
   args: {
-    iconName: 'add',
+    name: 'add',
     size: 48,
   },
 };
 
 export const SmallIcon: Story = {
   args: {
-    iconName: 'add',
+    name: 'add',
     size: 12,
   },
 };

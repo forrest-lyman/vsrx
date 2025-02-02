@@ -5,7 +5,7 @@ import { Icon,  IconProps } from '../Icon/Icon';
 import { withSidebar } from '../../stories/decorators/vscode';
 
 const meta: Meta<IconProps> = {
-  title: 'UI/Typography',
+  title: 'Core/Typography',
   component: Icon,
   decorators: [withSidebar],
 } satisfies Meta<typeof Icon>;
