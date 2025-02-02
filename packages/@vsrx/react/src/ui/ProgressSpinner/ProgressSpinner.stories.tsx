@@ -6,7 +6,7 @@ import { withSidebar } from '../../stories/decorators/vscode';
 
 
 const meta  = {
-    title: 'UI/ProgressSpinner',
+    title: 'Feedback/ProgressSpinner',
     component: ProgressSpinner,
     decorators: [withSidebar],
 } satisfies Meta<typeof ProgressSpinner>;

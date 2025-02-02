@@ -39,7 +39,7 @@ const TestGrid = () => {
 }
 
 const meta: Meta<GridProps> = {
-  title: 'UI/Grid',
+  title: 'Layout/Grid',
   component: TestGrid,
   decorators: [withSidebar],
 } satisfies Meta<typeof Grid>;

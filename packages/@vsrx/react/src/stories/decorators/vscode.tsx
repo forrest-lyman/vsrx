@@ -8,19 +8,26 @@ const Vsc = styled.div`
     line-height: 1.5;
 `;
 
-const Sidebar = styled.div`
+const Sidebar = styled.div<{ noPadding: boolean }>`
     width: 320px;
     height: 80vh;
-    padding: 16px;
+    padding: ${({ noPadding }) => (noPadding ? '0' : '16px')};
     box-sizing: border-box;
     background-color: #141414;
     color: #fff;
 `;
 
-export const withSidebar: Decorator = (Story, context) => (
-    <Vsc>
-        <Sidebar>
-            <Story {...context} />
-        </Sidebar>
-    </Vsc>
-);
+interface WithSidebarProps {
+    noPadding?: boolean;
+}
+
+export const withSidebar: Decorator = (Story, context) => {
+    const { noPadding = false } = context.args as WithSidebarProps;
+    return (
+        <Vsc>
+            <Sidebar noPadding={noPadding}>
+                <Story {...context} />
+            </Sidebar>
+        </Vsc>
+    );
+};

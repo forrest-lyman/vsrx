@@ -5,7 +5,7 @@ import { withSidebar } from '../../stories/decorators/vscode';
 import { Card, CardProps } from './Card';
 
 const meta  = {
-    title: 'UI/Card',
+    title: 'Surface/Card',
     component: Card,
     decorators: [withSidebar],
 } satisfies Meta<typeof Card>;

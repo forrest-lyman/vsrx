@@ -6,7 +6,7 @@ import { withSidebar } from '../../stories/decorators/vscode';
 
 
 const meta  = {
-    title: 'UI/Button',
+    title: 'Form/Button',
     component: Button,
     decorators: [withSidebar],
 } satisfies Meta<typeof Button>;
